@@ -1,7 +1,9 @@
 # Mina zkApp: Add
 
-This template uses TypeScript. In this example we have a zkApp which updates the state fields every time a transaction is sent to it.
+In this example we deploy a zkApp which updates the zkApp state fields every time a transaction is sent to it by 2.
+This is done via the `update` method called on the zkApp `Add`
 
+Configuration is set-up to be deployed on berkeley testnet.
 
 ## Setup
 ### Clone the repository 
@@ -16,25 +18,36 @@ npm i
 ```
 
 ### Setup keys/Fund wallet
-Before deploying , you must fund the wallet.  There are two key-pairs required
-- zkApp : This keypair is for the deployed zkApp.  
-- User: This keypair is for user signing & calling zkApp.
+Before deploying , you must fund the wallet.  There are two key-pairs required/
+- zkApp : This keypair is for the zkApp. Located in `keys/berkeley.json`  
+- User: This keypair is for user signing & calling zkApp method. Located in `keys/user.json`
 
-### Deploy to Berkley testnet
+You must update these files. 
 
-This command will deploy to berkeley testnet
+TODO: Add instructions/code to create keypair
+
+Both wallets must be funded by requesting faucet funds here by providing the public key:
+```
+https://faucet.minaprotocol.com/
+```
+
+### Build Project
+Typescript must be compiled to javascript to be executed , this is done via. 
+```sh
+npm run build
+```
+This should be run after any changes are made to the project.
+
+### Deploy zkApp to Berkley testnet
+Once funded , this command will deploy zkApp `Add` to  `berkeley` testnet. The address of the
+zkApp is the public key defined in `keys\berkeley.json`.
+
 ```
 zk deploy berkeley
 ```
 
-### How to build
-
-```sh
-npm run build
-```
-
-### How to call zkApp
-This command will call the update method of the zkApp
+### Call `update` on `Add` zkApp
+This command will call the update method of the zkApp `Add`
 ```
 node build/src/interact.js berkeley
 ```

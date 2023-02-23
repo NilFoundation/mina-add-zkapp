@@ -18,6 +18,7 @@ import { Add } from './Add.js';
 
 // check command line arg
 let network = process.argv[2];
+let userKeyPath = "keys/user.json"
 if (!network)
   throw Error(`Missing <network> argument.
 
@@ -38,8 +39,13 @@ let key: { privateKey: string } = JSON.parse(
 );
 let zkAppKey = PrivateKey.fromBase58(key.privateKey);
 
-let userPrivKey = PrivateKey.fromBase58("EKEp27c6bcFYChrLLfWbTLwMy57GWwztXGc6ZXGcaGanYXNSi9DS")
-let userPubKey = userPrivKey.toPublicKey()
+let userKeyPair :{ privateKey: string } = JSON.parse(
+  await fs.readFile(userKeyPath, 'utf8')
+);
+
+let userPrivateKey = PrivateKey.fromBase58(userKeyPair.privateKey)
+let userPublicKey = userPrivateKey.toPublicKey()
+
 
 // set up Mina instance and contract we interact with
 const Network = Mina.Network(config.url);
@@ -53,12 +59,12 @@ await Add.compile();
 
 // call update() and send transaction
 console.log('build transaction and create proof...');
-let tx = await Mina.transaction({ sender: userPubKey, fee: 0.1e9 }, () => {
+let tx = await Mina.transaction({ sender: userPublicKey, fee: 0.1e9 }, () => {
   zkApp.update();
 });
 await tx.prove();
 console.log('send transaction...');
-let sentTx = await tx.sign([userPrivKey]).send();
+let sentTx = await tx.sign([userPrivateKey]).send();
 
 if (sentTx.hash() !== undefined) {
   console.log(`
