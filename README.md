@@ -92,6 +92,11 @@ The following query will fetch state for zkApp & a merkle path to the staged led
 query {
   account(publicKey: "ZKAPP_PUBLIC_KEY") {
     index
+    balance {
+      liquid
+      locked
+      stateHash
+    }
     zkappState
     leafHash
     receiptChainHash
@@ -101,19 +106,13 @@ query {
     }
   }
 }
+
 ```
 
 ## Testing
 
 ```sh
 npm run test
-npm run testw # watch mode
-```
-
-## How to run coverage
-
-```sh
-npm run coverage
 ```
 
 ## License
