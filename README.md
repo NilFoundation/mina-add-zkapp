@@ -80,7 +80,27 @@ This command will call the update method of the zkApp `Add`
 node build/src/interact.js berkeley
 ```
 
-## How to run tests
+### See updated state GraphQL
+
+The graphQL dashboard to query `BERKELY` testnet data is located here : https://proxy.berkeley.minaexplorer.com/
+
+The following query will fetch state for zkApp & a merkle path to the staged ledger to it.
+```
+query {
+  account(publicKey: "ZKAPP_PUBLIC_KEY") {
+    index
+    zkappState
+    leafHash
+    receiptChainHash
+    merklePath {
+      left,
+      right
+    }
+  }
+}
+```
+
+## Testing
 
 ```sh
 npm run test
