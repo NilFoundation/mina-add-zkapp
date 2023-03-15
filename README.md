@@ -3,7 +3,12 @@
 In this example we deploy a zkApp which updates the zkApp state fields every time a transaction is sent to it by 2.
 This is done via the `update` method called on the zkApp `Add`
 
-Configuration is set-up to be deployed on berkeley testnet.
+Configuration is set-up to be deployed on `BERKELEY` testnet.
+
+## Dependencies
+- [NodeJS 16](https://nodejs.org/en/)
+- [NPM 6](https://www.npmjs.com/)
+
 
 ## Setup
 ### Clone the repository 
@@ -11,7 +16,7 @@ Configuration is set-up to be deployed on berkeley testnet.
 git clone git@github.com:NilFoundation/mina-zkapp-demo.git
 cd mina-zkapp-demo
 ```
-### Install dependencies
+### Install npm dependencies
 ```
 npm install -g zkapp-cli
 npm i
@@ -22,11 +27,34 @@ Before deploying , you must fund the wallet.  There are two key-pairs required/
 - zkApp : This keypair is for the zkApp. Located in `keys/berkeley.json`  
 - User: This keypair is for user signing & calling zkApp method. Located in `keys/user.json`
 
-You must update these files. 
+You must update these files, see below to generate keypair.
 
-TODO: Add instructions/code to create keypair
+#### Generate key Pair
 
-Both wallets must be funded by requesting faucet funds here by providing the public key:
+The keypair generated with the below command should **ONLY** be used for test environments.
+
+```
+npm run build && node build/src/generateKeyPairs.js
+```
+This commands outputs :
+```
+--------WARNING: UNSECURE KEYS DO NOT USE IN PRODUCTION ENV----------------
+
+--------------------------------------------------------------------------
+zkApp private key: EKxxxxxxxxxxxxxxxxxxxxxxxxx
+zkApp public key : B62xxxxxxxxxxxxxxxxxxxxxxxx
+--------------------------------------------------------------------------
+user private key : EKxxxxxxxxxxxxxxxxxxxxxxxxx
+user public key  : B62xxxxxxxxxxxxxxxxxxxxxxxx
+--------------------------------------------------------------------------
+```
+User should copy the 
+- `zkApp` key pair to `keys/berkeley.json`
+- `user` key pair to `keys/user.json`
+
+Both wallets must be funded by requesting faucet funds on `BERKELEY` network here 
+by providing the public key:
+
 ```
 https://faucet.minaprotocol.com/
 ```
