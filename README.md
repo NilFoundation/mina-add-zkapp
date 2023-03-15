@@ -6,7 +6,7 @@ This is done via the `update` method called on the zkApp `Add`
 Configuration is set-up to be deployed on `BERKELEY` testnet.
 
 ## Dependencies
-- [NodeJS 16](https://nodejs.org/en/)
+- [NodeJS 16+](https://nodejs.org/en/)
 - [NPM 6](https://www.npmjs.com/)
 
 
@@ -16,18 +16,18 @@ Configuration is set-up to be deployed on `BERKELEY` testnet.
 git clone git@github.com:NilFoundation/mina-zkapp-demo.git
 cd mina-zkapp-demo
 ```
-### Install npm dependencies
+### Install project dependencies
 ```
 npm install -g zkapp-cli
 npm i
 ```
 
 ### Setup keys/Fund wallet
-Before deploying , you must fund the wallet.  There are two key-pairs required/
+There are two key-pairs required to deploy the zkApp to testnet
 - zkApp : This keypair is for the zkApp. Located in `keys/berkeley.json`  
 - User: This keypair is for user signing & calling zkApp method. Located in `keys/user.json`
 
-You must update these files, see below to generate keypair.
+User must update these files, see below to generate keypair.
 
 #### Generate key Pair
 
@@ -52,7 +52,7 @@ User should copy the
 - `zkApp` key pair to `keys/berkeley.json`
 - `user` key pair to `keys/user.json`
 
-Both wallets must be funded by requesting faucet funds on `BERKELEY` network here 
+Both wallets **must** be funded by requesting faucet funds on `BERKELEY` network here 
 by providing the public key:
 
 ```
@@ -64,7 +64,7 @@ Typescript must be compiled to javascript to be executed , this is done via.
 ```sh
 npm run build
 ```
-This should be run after any changes are made to the project.
+_This should be run after any changes are made to the project._
 
 ### Deploy zkApp to Berkley testnet
 Once funded , this command will deploy zkApp `Add` to  `berkeley` testnet. The address of the
