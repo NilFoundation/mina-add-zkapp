@@ -63,8 +63,23 @@ describe('Add', () => {
 
   it('generates and deploys the `Add` smart contract', async () => {
     await localDeploy();
-    const num = zkApp.num.get();
-    expect(num).toEqual(Field(1));
+    const num1 = zkApp.num1.get();
+    const num2 = zkApp.num2.get();
+    const num3 = zkApp.num3.get();
+    const num4 = zkApp.num4.get();
+    const num5 = zkApp.num5.get();
+    const num6 = zkApp.num6.get();
+    const num7 = zkApp.num7.get();
+    const num8 = zkApp.num8.get();
+
+    expect(num1).toEqual(Field(1));
+    expect(num2).toEqual(Field(2));
+    expect(num3).toEqual(Field(3));
+    expect(num4).toEqual(Field(4));
+    expect(num5).toEqual(Field(5));
+    expect(num6).toEqual(Field(6));
+    expect(num7).toEqual(Field(7));
+    expect(num8).toEqual(Field(8));
   });
 
   it('correctly updates the num state on the `Add` smart contract', async () => {
@@ -77,7 +92,23 @@ describe('Add', () => {
     await txn.prove();
     await txn.sign([senderKey]).send();
 
-    const updatedNum = zkApp.num.get();
-    expect(updatedNum).toEqual(Field(3));
+    const updatedNum1 = zkApp.num1.get();
+    const updatedNum2 = zkApp.num2.get();
+    const updatedNum3 = zkApp.num3.get();
+    const updatedNum4 = zkApp.num4.get();
+    const updatedNum5 = zkApp.num5.get();
+    const updatedNum6 = zkApp.num6.get();
+    const updatedNum7 = zkApp.num7.get();
+    const updatedNum8 = zkApp.num8.get();
+
+    expect(updatedNum1).toEqual(Field(2));
+    expect(updatedNum2).toEqual(Field(4));
+    expect(updatedNum3).toEqual(Field(6));
+    expect(updatedNum4).toEqual(Field(8));
+    expect(updatedNum5).toEqual(Field(10));
+    expect(updatedNum6).toEqual(Field(12));
+    expect(updatedNum7).toEqual(Field(14));
+    expect(updatedNum8).toEqual(Field(16));
+
   });
 });
