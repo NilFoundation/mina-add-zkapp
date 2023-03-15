@@ -1,7 +1,10 @@
 # Mina zkApp: Add
 
-In this example we deploy a zkApp which updates the zkApp state fields every time a transaction is sent to it by 2.
-This is done via the `update` method called on the zkApp `Add`
+In this example we deploy a zkApp which has 8 state variables initialized to  `1,2,3,4,5,6,7,8`
+The contract has a method `update` which increments the zkApp state fields by `1,2,3,4,5,6,7,8`
+each of them respectively.  
+- `update#1` values changed to `2,4,6,8,10,12,14,16` 
+- `update#2` values changed to `3,6,9,12,15,18,21,24`.
 
 Configuration is set-up to be deployed on `BERKELEY` testnet.
 
